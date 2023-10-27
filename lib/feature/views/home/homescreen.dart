@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:turbosoft/core/constents/colors/kcolors.dart';
 import 'package:turbosoft/core/constents/fonts/kfonts.dart';
+import 'package:turbosoft/feature/views/home/widgets/bottomsection.dart';
+import 'package:turbosoft/feature/views/home/widgets/schemeswidget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -37,92 +39,51 @@ class HomeScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 0),
           child: Column(
             children: [
-              ListTile(
-                contentPadding: const EdgeInsets.all(0),
-                leading: Container(
-                  height: size.width / 2,
-                  width: size.width / 6,
-                  decoration: BoxDecoration(
-                    color: kcolorred,
-                    borderRadius: BorderRadius.circular(
-                      10,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: ListTile(
+                  contentPadding: const EdgeInsets.all(0),
+                  leading: Container(
+                    height: size.width / 2,
+                    width: size.width / 6,
+                    decoration: BoxDecoration(
+                      color: kcolorred,
+                      borderRadius: BorderRadius.circular(
+                        10,
+                      ),
                     ),
                   ),
-                ),
-                title: Text(
-                  'Abdu Saleem',
-                  overflow: TextOverflow.ellipsis,
-                  style:
-                      kprimaryfont(fontSize: 18, fontWeight: FontWeight.w600),
-                ),
-                subtitle: Text(
-                  '+91 1234567890',
-                  overflow: TextOverflow.ellipsis,
-                  style: kprimaryfont(
-                    fontSize: 16,
+                  title: Text(
+                    'Abdu Saleem',
+                    overflow: TextOverflow.ellipsis,
+                    style:
+                        kprimaryfont(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                  subtitle: Text(
+                    '+91 1234567890',
+                    overflow: TextOverflow.ellipsis,
+                    style: kprimaryfont(
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),
               SizedBox(
                 height: size.height * 0.02,
               ),
-              Row(
-                children: [
-                  Text(
-                    "Today's Gold Rate",
-                    style: kprimaryfont(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                        color: kcolorblack.withOpacity(.5)),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: size.width / 5,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   children: [
-                    Image.asset(
-                      'assets/images/goldcoinimage.png',
-                      height: 80,
-                      width: 60,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          'Last Change !6 May 2020 | 12:30 PM',
-                          style: kprimaryfont(
-                            color: kcolorblack.withOpacity(.6),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              '₹ 4,350.00',
-                              style: kprimaryfont(
-                                  color: kcolorblack,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            Text(
-                              '(1 gram)',
-                              style: kprimaryfont(
-                                color: kcolorblack.withOpacity(.6),
-                              ),
-                            )
-                          ],
-                        ),
-                        Text(
-                          '₹34,800.00 ( 8 grams )',
-                          style: kprimaryfont(
-                            color: kcolorblack.withOpacity(.6),
-                          ),
-                        ),
-                      ],
+                    Text(
+                      "Today's Gold Rate",
+                      style: kprimaryfont(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                          color: kcolorblack.withOpacity(.5)),
                     )
                   ],
                 ),
@@ -130,32 +91,102 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: size.height * 0.02,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      textAlign: TextAlign.center,
-                      'Gold rate shown in Thrissur is shown here. It may be varies with your region',
-                      style: kprimaryfont(
-                          color: kcolorblack.withOpacity(.6), fontSize: 9),
-                    ),
-                  )
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: SizedBox(
+                  height: size.width / 5,
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/GoldRate.png',
+                        height: 80,
+                        width: 60,
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            'Last Change !6 May 2020 | 12:30 PM',
+                            style: kprimaryfont(
+                              color: kcolorblack.withOpacity(.6),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                '₹ 4,350.00',
+                                style: kprimaryfont(
+                                    color: kcolorblack,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Text(
+                                '(1 gram)',
+                                style: kprimaryfont(
+                                  color: kcolorblack.withOpacity(.6),
+                                ),
+                              )
+                            ],
+                          ),
+                          Text(
+                            '₹34,800.00 ( 8 grams )',
+                            style: kprimaryfont(
+                                color: kcolorblack.withOpacity(.6),
+                                fontSize: 10),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               ),
               SizedBox(
                 height: size.height * 0.02,
               ),
-              Row(
-                children: [
-                  Text(
-                    'Active Schemes',
-                    style: kprimaryfont(
-                        color: kcolorblack.withOpacity(.6),
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500),
-                  )
-                ],
-              )
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        'Gold rate shown in Thrissur is shown here. It may be varies with your region',
+                        style: kprimaryfont(
+                            color: kcolorblack.withOpacity(.6), fontSize: 9),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: size.height * 0.02,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    Text(
+                      'Active Schemes',
+                      style: kprimaryfont(
+                          color: kcolorblack.withOpacity(.6),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: size.height * 0.02,
+              ),
+              const SchemesWidget(),
+              SizedBox(
+                height: size.height * 0.02,
+              ),
+              const BottomSectionWidget(),
             ],
           ),
         ),
