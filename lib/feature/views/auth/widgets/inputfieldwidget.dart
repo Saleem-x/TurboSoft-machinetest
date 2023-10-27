@@ -14,6 +14,15 @@ class InputFieldWidget extends StatelessWidget {
         border: InputBorder.none,
         hintText: 'Mobile Number',
       ),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "Mobile number is required";
+        } else if (value.length != 10) {
+          return "mobile number should 10";
+        } else {
+          return null;
+        }
+      },
     );
   }
 }

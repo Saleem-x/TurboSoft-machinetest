@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turbosoft/core/constents/colors/kcolors.dart';
@@ -32,8 +33,8 @@ class HomeScreen extends StatelessWidget {
                     // log("$data");
                   },
                   icon: const Icon(
-                    Icons.menu,
-                    size: 40,
+                    FontAwesomeIcons.bars,
+                    size: 30,
                   )),
               IconButton(
                 onPressed: () async {},
@@ -99,14 +100,14 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: size.height * 0.02,
+                height: size.height * 0.001,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: GoldRateWidget(size: size),
               ),
               SizedBox(
-                height: size.height * 0.02,
+                height: size.height * 0.01,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -117,14 +118,14 @@ class HomeScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                         'Gold rate shown in Thrissur is shown here. It may be varies with your region',
                         style: kprimaryfont(
-                            color: kcolorblack.withOpacity(.6), fontSize: 9),
+                            color: kcolorblack.withOpacity(.6), fontSize: 8),
                       ),
                     )
                   ],
                 ),
               ),
               SizedBox(
-                height: size.height * 0.02,
+                height: size.height * 0.011,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),

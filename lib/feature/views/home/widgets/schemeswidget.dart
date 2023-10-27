@@ -6,9 +6,9 @@ import 'package:turbosoft/core/api/endpoints.dart';
 import 'package:turbosoft/core/constents/colors/kcolors.dart';
 import 'package:turbosoft/core/constents/fonts/kfonts.dart';
 import 'package:turbosoft/feature/data/models/uset_base_model/uset_base_model.dart';
-import 'package:turbosoft/feature/domain/repos/schemedetailsrepo.dart';
 import 'package:turbosoft/feature/state/bloc/activeschemes/activeschemes_bloc.dart';
 import 'package:turbosoft/feature/state/bloc/schemedetails/schemedetails_bloc.dart';
+import 'package:turbosoft/feature/state/cubit/cubit/schemeselector_cubit.dart';
 
 class SchemesWidget extends StatelessWidget {
   const SchemesWidget({super.key, required this.user});
@@ -67,10 +67,9 @@ class SchemesWidget extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: InkWell(
                               onTap: () async {
-                                // await SchemedetailsRepo().getSchemeDetails(
-                                //     datakey,
-                                //     user.cusId!,
-                                //     schemes[index].schemeNo!);
+                                context
+                                    .read<SchemeselectorCubit>()
+                                    .selectscheme(index);
                                 context.read<SchemedetailsBloc>().add(
                                     GetschemedetailsEvent(
                                         cusid: user.cusId!,
@@ -78,42 +77,60 @@ class SchemesWidget extends StatelessWidget {
                                         datakeys: datakey,
                                         scheme: schemes[index]));
                               },
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Container(
-                                  width: size.width / 2,
-                                  decoration: BoxDecoration(
-                                    color: kcolorwhite,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Icon(
-                                            Iconsax.global_edit,
-                                          ),
-                                          Text(
-                                            schemes[index].schemeNo!,
-                                            style: kprimaryfont(
-                                              fontSize: 16,
-                                            ),
-                                          ),
-                                          Text(
-                                            '${schemes[index].schemeName} | ₹${schemes[index].totalAmount}',
-                                            style: kprimaryfont(
-                                              fontSize: 10,
-                                            ),
-                                          ),
-                                        ]),
-                                  ),
-                                ),
+                              child: BlocBuilder<SchemeselectorCubit,
+                                  SchemeselectorState>(
+                                builder: (context, selected) {
+                                  return Card(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Container(
+                                      width: size.width / 2,
+                                      decoration: BoxDecoration(
+                                        color: kcolorwhite,
+                                        gradient: LinearGradient(
+                                            colors: selected.idx == index
+                                                ? [kgold1, kgold2]
+                                                : [kcolorwhite, kcolorwhite],
+                                            begin: Alignment.centerLeft,
+                                            end: Alignment.centerRight),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Icon(
+                                                Iconsax.global_edit,
+                                                color: selected.idx == index
+                                                    ? kcolorwhite
+                                                    : kcolorblack,
+                                              ),
+                                              Text(
+                                                schemes[index].schemeNo!,
+                                                style: kprimaryfont(
+                                                    fontSize: 16,
+                                                    color: selected.idx == index
+                                                        ? kcolorwhite
+                                                        : kcolorblack),
+                                              ),
+                                              Text(
+                                                '${schemes[index].schemeName} | ₹${schemes[index].totalAmount}',
+                                                style: kprimaryfont(
+                                                    fontSize: 10,
+                                                    color: selected.idx == index
+                                                        ? kcolorwhite
+                                                        : kcolorblack),
+                                              ),
+                                            ]),
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:turbosoft/core/constents/colors/kcolors.dart';
 import 'package:turbosoft/core/constents/fonts/kfonts.dart';
 import 'package:turbosoft/feature/state/bloc/login/login_bloc.dart';
@@ -39,8 +40,41 @@ class LoginScreen extends StatelessWidget {
                       ),
                       (route) => false);
                 },
-                failedstate: () {},
-                exceptionalstate: (message) {},
+                failedstate: () {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      backgroundColor: kcolorred,
+                      content: Row(
+                        children: [
+                          const Icon(
+                            Iconsax.info_circle,
+                            color: kcolorwhite,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'Something went wrong',
+                            style: kprimaryfont(),
+                          )
+                        ],
+                      )));
+                },
+                exceptionalstate: (message) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      backgroundColor: kcolorred,
+                      content: Row(
+                        children: [
+                          const Icon(
+                            Iconsax.info_circle,
+                            color: kcolorwhite,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(message)
+                        ],
+                      )));
+                },
                 loadingstate: () {},
               );
             },

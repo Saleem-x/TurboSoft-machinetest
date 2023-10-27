@@ -6,6 +6,7 @@ import 'package:turbosoft/feature/state/bloc/goldrate/goldrate_bloc.dart';
 import 'package:turbosoft/feature/state/bloc/login/login_bloc.dart';
 import 'package:turbosoft/feature/state/bloc/schemedetails/schemedetails_bloc.dart';
 import 'package:turbosoft/feature/state/bloc/splash/splash_bloc.dart';
+import 'package:turbosoft/feature/state/cubit/cubit/schemeselector_cubit.dart';
 import 'package:turbosoft/feature/views/splash/splashscreen.dart';
 
 void main() async {
@@ -34,6 +35,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => getit<SchemedetailsBloc>(),
+        ),
+        BlocProvider<SchemeselectorCubit>(
+          create: (context) => SchemeselectorCubit(),
         ),
       ],
       child: MaterialApp(

@@ -5,9 +5,16 @@ import 'package:turbosoft/core/constents/colors/kcolors.dart';
 import 'package:turbosoft/core/constents/fonts/kfonts.dart';
 import 'package:turbosoft/feature/state/bloc/schemedetails/schemedetails_bloc.dart';
 
-class BottomSectionWidget extends StatelessWidget {
+class BottomSectionWidget extends StatefulWidget {
   const BottomSectionWidget({super.key});
 
+  @override
+  State<BottomSectionWidget> createState() => _BottomSectionWidgetState();
+}
+
+final TextEditingController _payablecontroller = TextEditingController();
+
+class _BottomSectionWidgetState extends State<BottomSectionWidget> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -132,6 +139,7 @@ class BottomSectionWidget extends StatelessWidget {
                                           ),
                                         ),
                                         TextFormField(
+                                          keyboardType: TextInputType.number,
                                           decoration: InputDecoration(
                                             border: UnderlineInputBorder(
                                               borderSide: BorderSide(
