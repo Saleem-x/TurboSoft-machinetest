@@ -5,6 +5,7 @@ import 'package:turbosoft/core/constents/colors/kcolors.dart';
 import 'package:turbosoft/core/constents/fonts/kfonts.dart';
 import 'package:turbosoft/feature/data/models/uset_base_model/uset_base_model.dart';
 import 'package:turbosoft/feature/views/home/widgets/bottomsection.dart';
+import 'package:turbosoft/feature/views/home/widgets/goldratewidget.dart';
 import 'package:turbosoft/feature/views/home/widgets/schemeswidget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -27,13 +28,15 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () async {
                     final sharedprefs = await SharedPreferences.getInstance();
                     await sharedprefs.clear();
+                    // final data = sharedprefs.get('user');
+                    // log("$data");
                   },
                   icon: const Icon(
                     Icons.menu,
                     size: 40,
                   )),
               IconButton(
-                onPressed: () {},
+                onPressed: () async {},
                 icon: const Icon(
                   Iconsax.notification,
                   size: 30,
@@ -100,56 +103,7 @@ class HomeScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: SizedBox(
-                  height: size.width / 5,
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/GoldRate.png',
-                        height: 80,
-                        width: 60,
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            'Last Change !6 May 2020 | 12:30 PM',
-                            style: kprimaryfont(
-                              color: kcolorblack.withOpacity(.6),
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                '₹ 4,350.00',
-                                style: kprimaryfont(
-                                    color: kcolorblack,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              Text(
-                                '(1 gram)',
-                                style: kprimaryfont(
-                                  color: kcolorblack.withOpacity(.6),
-                                ),
-                              )
-                            ],
-                          ),
-                          Text(
-                            '₹34,800.00 ( 8 grams )',
-                            style: kprimaryfont(
-                                color: kcolorblack.withOpacity(.6),
-                                fontSize: 10),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
+                child: GoldRateWidget(size: size),
               ),
               SizedBox(
                 height: size.height * 0.02,
@@ -189,7 +143,7 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: size.height * 0.02,
               ),
-              const SchemesWidget(),
+              SchemesWidget(user: user),
               SizedBox(
                 height: size.height * 0.02,
               ),

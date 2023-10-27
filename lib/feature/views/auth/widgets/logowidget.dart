@@ -5,7 +5,7 @@ import 'package:turbosoft/core/api/endpoints.dart';
 import 'package:turbosoft/core/constents/colors/kcolors.dart';
 import 'package:turbosoft/core/constents/fonts/kfonts.dart';
 import 'package:turbosoft/feature/data/models/login_model/login_model.dart';
-import 'package:turbosoft/feature/state/bloc/bloc/login_bloc.dart';
+import 'package:turbosoft/feature/state/bloc/login/login_bloc.dart';
 import 'package:turbosoft/feature/views/auth/widgets/inputfieldwidget.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';

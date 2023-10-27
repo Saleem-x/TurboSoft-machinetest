@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turbosoft/core/constents/colors/kcolors.dart';
 import 'package:turbosoft/core/constents/fonts/kfonts.dart';
-import 'package:turbosoft/feature/state/bloc/bloc/login_bloc.dart';
+import 'package:turbosoft/feature/state/bloc/login/login_bloc.dart';
 import 'package:turbosoft/feature/views/auth/widgets/logowidget.dart';
 import 'package:turbosoft/feature/views/home/homescreen.dart';
 
