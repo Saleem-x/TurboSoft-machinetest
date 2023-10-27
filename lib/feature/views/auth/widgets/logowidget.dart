@@ -1,17 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:otp_text_field/otp_field_style.dart';
+import 'package:turbosoft/core/api/endpoints.dart';
 import 'package:turbosoft/core/constents/colors/kcolors.dart';
 import 'package:turbosoft/core/constents/fonts/kfonts.dart';
+import 'package:turbosoft/feature/data/models/login_model/login_model.dart';
+import 'package:turbosoft/feature/state/bloc/bloc/login_bloc.dart';
 import 'package:turbosoft/feature/views/auth/widgets/inputfieldwidget.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
-import 'package:turbosoft/feature/views/home/homescreen.dart';
 
-class LogoWidget extends StatelessWidget {
+class LogoWidget extends StatefulWidget {
   const LogoWidget({
     super.key,
   });
 
+  @override
+  State<LogoWidget> createState() => _LogoWidgetState();
+}
+
+TextEditingController _phonecontroller = TextEditingController();
+String otp = '';
+
+class _LogoWidgetState extends State<LogoWidget> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -88,8 +99,8 @@ class LogoWidget extends StatelessWidget {
                 const SizedBox(
                   width: 10,
                 ),
-                const Expanded(
-                  child: InputFieldWidget(),
+                Expanded(
+                  child: InputFieldWidget(controller: _phonecontroller),
                 ),
               ],
             ),
@@ -130,7 +141,7 @@ class LogoWidget extends StatelessWidget {
                 focusBorderColor: kcolorwhite,
               ),
               onCompleted: (pin) {
-                // print("Completed: " + pin);
+                otp = pin;
               },
             ),
           ),
@@ -146,13 +157,15 @@ class LogoWidget extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const HomeScreen(),
-                      ),
-                      (route) => false);
+                onPressed: () async {
+                  context.read<LoginBloc>().add(
+                        UserLoginEvent(
+                          LoginModel(
+                              mob: _phonecontroller.text,
+                              datakey: datakey,
+                              pin: otp),
+                        ),
+                      );
                 },
                 child: Text(
                   'Login',

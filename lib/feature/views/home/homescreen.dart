@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turbosoft/core/constents/colors/kcolors.dart';
 import 'package:turbosoft/core/constents/fonts/kfonts.dart';
+import 'package:turbosoft/feature/data/models/uset_base_model/uset_base_model.dart';
 import 'package:turbosoft/feature/views/home/widgets/bottomsection.dart';
 import 'package:turbosoft/feature/views/home/widgets/schemeswidget.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required this.user});
+  final UsetBaseModel user;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,10 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    final sharedprefs = await SharedPreferences.getInstance();
+                    await sharedprefs.clear();
+                  },
                   icon: const Icon(
                     Icons.menu,
                     size: 40,
@@ -50,20 +56,21 @@ class HomeScreen extends StatelessWidget {
                     height: size.width / 2,
                     width: size.width / 6,
                     decoration: BoxDecoration(
-                      color: kcolorred,
-                      borderRadius: BorderRadius.circular(
-                        10,
-                      ),
-                    ),
+                        color: kcolorwhite,
+                        borderRadius: BorderRadius.circular(
+                          10,
+                        ),
+                        image: const DecorationImage(
+                            image: AssetImage('assets/images/user.png'))),
                   ),
                   title: Text(
-                    'Abdu Saleem',
+                    user.cusName,
                     overflow: TextOverflow.ellipsis,
                     style:
                         kprimaryfont(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                   subtitle: Text(
-                    '+91 1234567890',
+                    user.cusMobileNumber,
                     overflow: TextOverflow.ellipsis,
                     style: kprimaryfont(
                       fontSize: 16,
