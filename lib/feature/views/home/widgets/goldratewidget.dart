@@ -48,26 +48,34 @@ class GoldRateWidget extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                Text(
-                                  '₹${goldrate.boardRate}',
-                                  style: kprimaryfont(
-                                      color: kcolorblack,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500),
+                                Expanded(
+                                  child: Text(
+                                    overflow: TextOverflow.ellipsis,
+                                    '₹${goldrate.boardRate}',
+                                    style: kprimaryfont(
+                                        color: kcolorblack,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500),
+                                  ),
                                 ),
-                                Text(
-                                  '(${goldrate.weight} gram)',
-                                  style: kprimaryfont(
-                                    color: kcolorblack.withOpacity(.6),
+                                Expanded(
+                                  child: Text(
+                                    overflow: TextOverflow.ellipsis,
+                                    '(${goldrate.weight} gram)',
+                                    style: kprimaryfont(
+                                      color: kcolorblack.withOpacity(.6),
+                                    ),
                                   ),
                                 )
                               ],
                             ),
-                            Text(
-                              '₹${goldrate.totalPrice} ( 8 grams )',
-                              style: kprimaryfont(
-                                  color: kcolorblack.withOpacity(.6),
-                                  fontSize: 11),
+                            Expanded(
+                              child: Text(
+                                '₹${goldrate.totalPrice} ( 8 grams )',
+                                style: kprimaryfont(
+                                    color: kcolorblack.withOpacity(.6),
+                                    fontSize: 11),
+                              ),
                             ),
                           ],
                         ),

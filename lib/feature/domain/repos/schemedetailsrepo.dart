@@ -18,12 +18,12 @@ class SchemedetailsRepo implements ISchemeDetails {
       final response = await http.post(Uri.parse(baseurl + schemedetailurl),
           body: {"datakey": datakey, "cusID": cusId, "schemeID": schmid});
       if (response.statusCode == 200) {
-        log(response.body);
+        // log(response.body);
         final Map<String, dynamic> json = jsonDecode(response.body);
 
         final schemedetail = SchemeDetailsModel.fromJson(json['result'][0]);
 
-        log(response.statusCode.toString());
+        // log(response.statusCode.toString());
 
         return right(schemedetail);
       } else {

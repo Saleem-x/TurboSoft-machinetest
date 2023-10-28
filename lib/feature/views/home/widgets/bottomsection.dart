@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:turbosoft/core/constents/colors/kcolors.dart';
 import 'package:turbosoft/core/constents/fonts/kfonts.dart';
 import 'package:turbosoft/feature/state/bloc/schemedetails/schemedetails_bloc.dart';
@@ -24,9 +25,7 @@ class _BottomSectionWidgetState extends State<BottomSectionWidget> {
         return state.when(
           schemedetails: (schemedetail, scheme) => schemedetail == null ||
                   scheme == null
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
+              ? const BottomSkeltonWidget()
               : Card(
                   color: kcolorwhite,
                   shape: const RoundedRectangleBorder(
@@ -98,22 +97,24 @@ class _BottomSectionWidgetState extends State<BottomSectionWidget> {
                                       ),
                                     ],
                                   ),
-                                  InkWell(
-                                    onTap: () {},
-                                    splashFactory: InkRipple.splashFactory,
-                                    splashColor: kcolorred,
-                                    child: Column(
-                                      children: [
-                                        const Icon(
-                                          FontAwesomeIcons.arrowRight,
-                                        ),
-                                        Text(
-                                          'View Details',
-                                          style: kprimaryfont(
-                                            fontSize: 10,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () {},
+                                      splashFactory: InkRipple.splashFactory,
+                                      splashColor: kcolorred,
+                                      child: Column(
+                                        children: [
+                                          const Icon(
+                                            FontAwesomeIcons.arrowRight,
                                           ),
-                                        )
-                                      ],
+                                          Text(
+                                            'View Details',
+                                            style: kprimaryfont(
+                                              fontSize: 10,
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   )
                                 ],
@@ -226,6 +227,24 @@ class _BottomSectionWidgetState extends State<BottomSectionWidget> {
                 ),
         );
       },
+    );
+  }
+}
+
+class BottomSkeltonWidget extends StatelessWidget {
+  const BottomSkeltonWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    return SizedBox(
+      width: size.width,
+      height: size.width,
+      child: Shimmer.fromColors(
+        baseColor: kcolorgrey.withOpacity(0.2),
+        highlightColor: kcolorgrey.withOpacity(0.4),
+        child: const Card(),
+      ),
     );
   }
 }

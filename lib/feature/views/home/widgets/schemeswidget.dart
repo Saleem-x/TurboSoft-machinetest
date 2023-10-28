@@ -10,16 +10,22 @@ import 'package:turbosoft/feature/state/bloc/activeschemes/activeschemes_bloc.da
 import 'package:turbosoft/feature/state/bloc/schemedetails/schemedetails_bloc.dart';
 import 'package:turbosoft/feature/state/cubit/cubit/schemeselector_cubit.dart';
 
-class SchemesWidget extends StatelessWidget {
+class SchemesWidget extends StatefulWidget {
   const SchemesWidget({super.key, required this.user});
   final UsetBaseModel user;
 
+  @override
+  State<SchemesWidget> createState() => _SchemesWidgetState();
+}
+
+class _SchemesWidgetState extends State<SchemesWidget> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     context
         .read<ActiveschemesBloc>()
-        .add(GetActiveSchemes(datakey: datakey, cusid: user.cusId!));
+        .add(GetActiveSchemes(datakey: datakey, cusid: widget.user.cusId!));
+    context.read<SchemeselectorCubit>().selectscheme(0);
     return SizedBox(
       height: size.width / 3,
       child: BlocListener<ActiveschemesBloc, ActiveschemesState>(
@@ -28,7 +34,7 @@ class SchemesWidget extends StatelessWidget {
             activeAchemesState: (schemes) {
               if (schemes != null) {
                 context.read<SchemedetailsBloc>().add(GetschemedetailsEvent(
-                    cusid: user.cusId!,
+                    cusid: widget.user.cusId!,
                     schmId: schemes[0].schemeNo!,
                     datakeys: datakey,
                     scheme: schemes[0]));
@@ -72,7 +78,7 @@ class SchemesWidget extends StatelessWidget {
                                     .selectscheme(index);
                                 context.read<SchemedetailsBloc>().add(
                                     GetschemedetailsEvent(
-                                        cusid: user.cusId!,
+                                        cusid: widget.user.cusId!,
                                         schmId: schemes[index].schemeNo!,
                                         datakeys: datakey,
                                         scheme: schemes[index]));
@@ -144,5 +150,11 @@ class SchemesWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    context.read<SchemeselectorCubit>().selectscheme(0);
+    super.dispose();
   }
 }

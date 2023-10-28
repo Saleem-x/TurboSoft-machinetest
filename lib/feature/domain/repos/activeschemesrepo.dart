@@ -15,11 +15,11 @@ class ActiveSchemesRepo implements IUserSchemes {
   Future<Either<MainFailures, List<CustomerSchemeModel>>> getactiveSchemes(
       String datakey, String cusId) async {
     try {
-      log(cusId);
       final response = await http.post(Uri.parse(baseurl + userschemesurl),
           body: {"datakey": datakey, "cusID": cusId});
       if (response.statusCode == 200) {
         // log(response.body);
+
         final Map<String, dynamic> json = jsonDecode(response.body);
         final List<dynamic> productData = json['result'];
         List<CustomerSchemeModel> schemes = productData
