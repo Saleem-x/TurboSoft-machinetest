@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:turbosoft/core/api/endpoints.dart';
 import 'package:turbosoft/core/constents/colors/kcolors.dart';
@@ -110,11 +109,17 @@ class _SchemesWidgetState extends State<SchemesWidget> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Icon(
-                                                Iconsax.global_edit,
-                                                color: selected.idx == index
-                                                    ? kcolorwhite
-                                                    : kcolorblack,
+                                              Image.asset(
+                                                schemes[index].schemeName ==
+                                                        'AKSHAYANIDHI'
+                                                    ? akshaynidi
+                                                    : schemes[index]
+                                                                .schemeName ==
+                                                            'REGALIA'
+                                                        ? regalia
+                                                        : diamond,
+                                                height: 30,
+                                                width: 30,
                                               ),
                                               Text(
                                                 schemes[index].schemeNo!,
@@ -158,3 +163,7 @@ class _SchemesWidgetState extends State<SchemesWidget> {
     super.dispose();
   }
 }
+
+String akshaynidi = 'assets/images/miscellaneous.png';
+String regalia = 'assets/images/business.png';
+String diamond = 'assets/images/flat.png';

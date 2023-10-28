@@ -20,7 +20,7 @@ class GoldRateWidget extends StatelessWidget {
     return BlocBuilder<GoldrateBloc, GoldrateState>(
       builder: (context, state) {
         return SizedBox(
-          height: size.width / 5,
+          height: size.width / 4,
           child: state.when(
             goldratestate: (goldrate) => goldrate == null
                 ? const GoldrateSkelton()
@@ -37,7 +37,7 @@ class GoldRateWidget extends StatelessWidget {
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               'Last Change ${goldrate.entryDate} | ${goldrate.entryTime}',

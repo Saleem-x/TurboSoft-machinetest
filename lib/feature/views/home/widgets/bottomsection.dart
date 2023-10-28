@@ -97,6 +97,7 @@ class _BottomSectionWidgetState extends State<BottomSectionWidget> {
                                       ),
                                     ],
                                   ),
+                                  const Spacer(),
                                   Expanded(
                                     child: InkWell(
                                       onTap: () {},

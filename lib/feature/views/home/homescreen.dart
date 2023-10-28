@@ -11,6 +11,7 @@ import 'package:turbosoft/feature/state/bloc/goldrate/goldrate_bloc.dart';
 import 'package:turbosoft/feature/views/auth/loginscreen.dart';
 import 'package:turbosoft/feature/views/home/widgets/bottomsection.dart';
 import 'package:turbosoft/feature/views/home/widgets/goldratewidget.dart';
+import 'package:turbosoft/feature/views/home/widgets/profiletile.dart';
 import 'package:turbosoft/feature/views/home/widgets/schemeswidget.dart';
 
 import '../../../core/api/endpoints.dart';
@@ -27,7 +28,7 @@ class HomeScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(100),
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -123,7 +124,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: ListTile(
+                  child: /* ListTile(
                     contentPadding: const EdgeInsets.all(0),
                     leading: Container(
                       height: 100,
@@ -149,7 +150,8 @@ class HomeScreen extends StatelessWidget {
                         fontSize: 16,
                       ),
                     ),
-                  ),
+                  ) */
+                      ProfileTileWidget(user: user),
                 ),
                 SizedBox(
                   height: size.height * 0.02,
