@@ -5,6 +5,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:turbosoft/core/constents/colors/kcolors.dart';
 import 'package:turbosoft/core/constents/fonts/kfonts.dart';
 import 'package:turbosoft/feature/state/bloc/schemedetails/schemedetails_bloc.dart';
+import 'package:turbosoft/feature/views/schemedetails/schemedetails.dart';
 
 class BottomSectionWidget extends StatefulWidget {
   const BottomSectionWidget({super.key});
@@ -100,7 +101,17 @@ class _BottomSectionWidgetState extends State<BottomSectionWidget> {
                                   const Spacer(),
                                   Expanded(
                                     child: InkWell(
-                                      onTap: () {},
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  SchemeDetailsScreen(
+                                                      scheme: scheme,
+                                                      schemedetail:
+                                                          schemedetail),
+                                            ));
+                                      },
                                       splashFactory: InkRipple.splashFactory,
                                       splashColor: kcolorred,
                                       child: Column(

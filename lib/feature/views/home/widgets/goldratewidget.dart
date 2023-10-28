@@ -39,6 +39,9 @@ class GoldRateWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            const SizedBox(
+                              height: 10,
+                            ),
                             Text(
                               'Last Change ${goldrate.entryDate} | ${goldrate.entryTime}',
                               overflow: TextOverflow.ellipsis,

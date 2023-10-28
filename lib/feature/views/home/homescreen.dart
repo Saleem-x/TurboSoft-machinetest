@@ -122,37 +122,7 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 0),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: /* ListTile(
-                    contentPadding: const EdgeInsets.all(0),
-                    leading: Container(
-                      height: 100,
-                      width: size.width / 6,
-                      decoration: BoxDecoration(
-                          color: kcolorwhite,
-                          borderRadius: BorderRadius.circular(
-                            10,
-                          ),
-                          image: const DecorationImage(
-                              image: AssetImage('assets/images/user.png'))),
-                    ),
-                    title: Text(
-                      user.cusName,
-                      overflow: TextOverflow.ellipsis,
-                      style: kprimaryfont(
-                          fontSize: 18, fontWeight: FontWeight.w600),
-                    ),
-                    subtitle: Text(
-                      user.cusMobileNumber,
-                      overflow: TextOverflow.ellipsis,
-                      style: kprimaryfont(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ) */
-                      ProfileTileWidget(user: user),
-                ),
+                ProfileTileWidget(user: user),
                 SizedBox(
                   height: size.height * 0.02,
                 ),
