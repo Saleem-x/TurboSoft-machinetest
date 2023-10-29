@@ -23,13 +23,11 @@ class LoginRepo {
 
         final user = UsetBaseModel.fromJson(json['result'][0]);
         if (user.cusName == null) {
-          Map<String, dynamic> responseMap = jsonDecode(response.body);
+          // Map<String, dynamic> responseMap = jsonDecode(response.body);
 
-          String message = responseMap['result'][0]['Status'].toString();
-          log(message);
-          return left(MainFailures.networkerror(
-              error:
-                  message == 'NF' ? 'User Not Found' : 'something went wrong'));
+          // String message = responseMap['result'][0]['Status'].toString();
+          // log(message);
+          return left(const MainFailures.networkerror(error: 'User Not Found'));
         }
         final sharedprefs = await SharedPreferences.getInstance();
         await sharedprefs.clear();
@@ -41,13 +39,13 @@ class LoginRepo {
       } else {
         Map<String, dynamic> responseMap = jsonDecode(response.body);
 
-        String message = responseMap['NF'].toString();
+        String message = responseMap['result'][0]['cus_Name'].toString();
         log(message);
-        log(response.body);
+        // log(response.body);
         log(response.statusCode.toString());
         return left(MainFailures.networkerror(
             error:
-                message == 'NF' ? 'User Not Found' : 'something went wrong'));
+                message == 'null' ? 'User Not Found' : 'something went wrong'));
       }
     } catch (e) {
       log('error-> $e');

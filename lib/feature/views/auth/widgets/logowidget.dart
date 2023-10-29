@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:otp_text_field/otp_field_style.dart';
 import 'package:turbosoft/core/api/endpoints.dart';
 import 'package:turbosoft/core/constents/colors/kcolors.dart';
@@ -147,6 +148,7 @@ class _LogoWidgetState extends State<LogoWidget> {
                 onCompleted: (pin) {
                   if (pin.length == 4) {
                     otp = pin;
+                    pin = '';
                   }
                 },
               ),
@@ -164,7 +166,7 @@ class _LogoWidgetState extends State<LogoWidget> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   onPressed: () async {
-                    if (_formkey.currentState!.validate()) {
+                    if (_formkey.currentState!.validate() && otp.length == 4) {
                       context.read<LoginBloc>().add(
                             UserLoginEvent(
                               LoginModel(
@@ -173,6 +175,27 @@ class _LogoWidgetState extends State<LogoWidget> {
                                   pin: otp),
                             ),
                           );
+                      otp = '';
+                    } else if (otp.length != 4) {
+                      ScaffoldMessenger.of(context)
+                        ..removeCurrentSnackBar()
+                        ..showSnackBar(SnackBar(
+                            backgroundColor: kcolorred,
+                            content: Row(
+                              children: [
+                                const Icon(
+                                  Iconsax.info_circle,
+                                  color: kcolorwhite,
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  'please enter your pin',
+                                  style: kprimaryfont(),
+                                )
+                              ],
+                            )));
                     }
                   },
                   child: Text(

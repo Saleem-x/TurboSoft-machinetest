@@ -33,6 +33,7 @@ class LoginScreen extends StatelessWidget {
               state.when(
                 initialstate: () {},
                 successstate: (user) {
+                  FocusManager.instance.primaryFocus?.unfocus();
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
